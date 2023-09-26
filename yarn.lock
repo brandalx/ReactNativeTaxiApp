@@ -1966,6 +1966,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@types/geojson@^7946.0.10":
+  version "7946.0.11"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.11.tgz#012c17cb2256ad8de78560da851ab914a7b9b40e"
+  integrity sha512-L7A0AINMXQpVwxHJ4jxD6/XjZ4NDufaRlUJHjNIFKYUFBH1SvOW+neaqb0VTRSLW5suSrSu19ObFEFnfNcr+qg==
+
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#dc1e9ded53375d37603c479cc12c693b0878aa2a"
@@ -5588,6 +5593,13 @@ react-native-google-places-autocomplete@^2.5.3:
     lodash.debounce "^4.0.8"
     prop-types "^15.7.2"
     qs "~6.9.1"
+
+react-native-maps@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.7.1.tgz#e0b9d68542b4b59b5ca3df375ada7c860fb41f2e"
+  integrity sha512-CHVLzL+Q2jiUGgbt4/vosxVI1SukWyaLGjD62VLgR/wZpnH4Umi9ql1bmKDPWcfj2C1QZwMU0Yc7rXTbvZUIiw==
+  dependencies:
+    "@types/geojson" "^7946.0.10"
 
 react-native-ratings@8.0.4:
   version "8.0.4"
