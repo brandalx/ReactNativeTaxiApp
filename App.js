@@ -10,7 +10,7 @@ export default function App() {
       <SafeAreaProvider>
         <HomeScreen />
       </SafeAreaProvider>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </Provider>
   );
 }
