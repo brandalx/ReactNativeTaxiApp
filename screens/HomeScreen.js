@@ -4,6 +4,8 @@ import tw from "twrnc";
 import React from "react";
 import NavOptions from "../components/NavOptions";
 import logoimg from "../assets/logo.png";
+import { GOOGLE_MAPS_APIKEY } from "@env";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -16,6 +18,21 @@ const HomeScreen = () => {
             resizeMode: "contain",
           }}
           source={logoimg}
+        />
+
+        <GooglePlacesAutocomplete
+          placeholder="Where from?"
+          nearbyPlacesAPI="GooglePlacesSearch"
+          debounce={400}
+          styles={{
+            container: {
+              flex: 0,
+            },
+          }}
+          query={{
+            key: GOOGLE_MAPS_APIKEY,
+            language: "en",
+          }}
         />
         <NavOptions />
       </View>
