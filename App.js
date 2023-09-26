@@ -7,6 +7,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <HomeScreen />
+      {/* <StatusBar style="auto" /> */}
     </Provider>
   );
 }
