@@ -5,13 +5,16 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
+  Image,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "react-native-elements";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
+
 const RideOptionsCard = () => {
   const navigation = useNavigation();
+  const [selected, setSelected] = useState(null);
 
   const data = [
     {
@@ -49,7 +52,33 @@ const RideOptionsCard = () => {
         </TouchableOpacity>
         <Text style={tw`text-center py-5 text-xl`}>Select a Ride</Text>
       </View>
-      <FlatList />
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item: { image, id, multiplier, title }, item }) => (
+          <TouchableOpacity
+            onPress={() => setSelected(item)}
+            style={tw`flex-row items-center justify-between px-8 mx-2 rounded-full ${
+              id === selected?.id && "bg-gray-200"
+            }`}
+          >
+            <Image
+              style={{ width: 100, height: 100, resizeMode: "contain" }}
+              source={{ uri: image }}
+            />
+            <View>
+              <Text style={tw`text-xl font-semibold`}>{title}</Text>
+              <Text>Travel time...</Text>
+            </View>
+            <Text style={tw`text-xl`}>59$</Text>
+          </TouchableOpacity>
+        )}
+      />
+      <View>
+        <TouchableOpacity>
+          <Text>Choose {selected?.title}</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
