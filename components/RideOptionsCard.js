@@ -14,6 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectTravelTimeInformation } from "../slices/navSlice";
 
+const SURGE_CHARGE_RATE = 1.5;
+
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const travelTimeInformation = useSelector(selectTravelTimeInformation);
@@ -77,9 +79,16 @@ const RideOptionsCard = () => {
             />
             <View>
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
-              <Text>Travel time...</Text>
+              <Text>Travel Time: {travelTimeInformation?.duration.text} </Text>
             </View>
-            <Text style={tw`text-xl`}>59$</Text>
+            <Text style={tw`text-xl`}>
+              {new Intl.NumberFormat("en-gb", {
+                style: "currency",
+                currency: "GBP",
+              }).format(
+                (travelTimeInformation?.duration.value * multiplier) / 100
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />
