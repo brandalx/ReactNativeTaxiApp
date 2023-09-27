@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-
+import { Icon } from "react-native-elements";
+import tw from "twrnc";
 const RideOptionsCard = () => {
   return (
     <View>
