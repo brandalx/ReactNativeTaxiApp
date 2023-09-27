@@ -13,6 +13,7 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
+import NavFavorites from "./NavFavorites";
 const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -45,6 +46,7 @@ const NavigateCard = () => {
             />
           </View>
         </View>
+        <NavFavorites />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
