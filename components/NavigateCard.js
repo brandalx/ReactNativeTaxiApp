@@ -19,11 +19,26 @@ import { Icon } from "react-native-elements";
 const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  function getTimeOfDay() {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 5 && currentHour < 12) {
+      return "Morning";
+    } else if (currentHour >= 12 && currentHour <= 16) {
+      return "Day";
+    } else if (currentHour > 16 && currentHour <= 20) {
+      return "Evening";
+    } else {
+      return "Night";
+    }
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={tw`bg-white flex-1`}>
         <View>
-          <Text style={tw`text-center py-5 text-xl`}>Good Morning, Name</Text>
+          <Text style={tw`text-center py-5 text-xl`}>
+            Good {getTimeOfDay()}, Brandon
+          </Text>
           <View style={tw`border-t border-gray-200 flex-shrink`}>
             <View>
               <GooglePlacesAutocomplete
