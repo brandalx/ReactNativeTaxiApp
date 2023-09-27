@@ -1,10 +1,12 @@
 import {
   View,
   Text,
+  Button,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
   FlatList,
+  Modal,
   Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -19,6 +21,7 @@ const SURGE_CHARGE_RATE = 1.5;
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const travelTimeInformation = useSelector(selectTravelTimeInformation);
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const [selected, setSelected] = useState(null);
 
@@ -79,7 +82,7 @@ const RideOptionsCard = () => {
             />
             <View>
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
-              <Text>Travel Time: {travelTimeInformation?.duration.text} </Text>
+              <Text>Travel Time: {travelTimeInformation?.duration?.text} </Text>
             </View>
             <Text style={tw`text-xl`}>
               {new Intl.NumberFormat("en-gb", {
@@ -96,6 +99,9 @@ const RideOptionsCard = () => {
         style={tw`mt-auto border-gray-20 rounded-t-3xl border-t border-l border-r `}
       >
         <TouchableOpacity
+          onPress={() => {
+            setModalVisible(true);
+          }}
           disabled={!selected}
           style={tw`bg-black py-3 m-3 rounded-full ${
             !selected && "bg-gray-300"
@@ -105,6 +111,37 @@ const RideOptionsCard = () => {
             Choose {selected?.title}
           </Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <View
+              style={{
+                width: 300,
+                padding: 20,
+                backgroundColor: "white",
+                borderColor: "black",
+
+                borderWidth: 1,
+                borderRadius: 10,
+              }}
+            >
+              <Text style={tw`text-black text-center font-semibold`}>
+                Your car is on the way!
+              </Text>
+              <Button title="Close" onPress={() => setModalVisible(false)} />
+            </View>
+          </View>
+        </Modal>
       </View>
     </SafeAreaView>
   );
