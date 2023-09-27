@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import React from "react";
 import tw from "twrnc";
 import { GOOGLE_MAPS_APIKEY } from "@env";
@@ -10,34 +17,36 @@ const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={tw`bg-white flex-1`}>
-      <Text style={tw`text-center py-5 text-xl`}>Good Morning, Name</Text>
-      <View style={tw`border-t border-gray-200 flex-shrink`}>
-        <View>
-          <GooglePlacesAutocomplete
-            styles={inputBoxStyles}
-            placeholder="Where to?"
-            enablePoweredByContainer={false}
-            nearbyPlacesAPI="GooglePlacesSearch"
-            debounce={400}
-            onPress={(data, details = null) => {
-              dispatch(
-                setDestination({
-                  location: details.geometry.location,
-                  description: data.description,
-                })
-              );
-              navigation.navigate("RideOptionsCard");
-            }}
-            fetchDetails={true}
-            query={{
-              key: GOOGLE_MAPS_APIKEY,
-              language: "en",
-            }}
-          />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={tw`bg-white flex-1`}>
+        <Text style={tw`text-center py-5 text-xl`}>Good Morning, Name</Text>
+        <View style={tw`border-t border-gray-200 flex-shrink`}>
+          <View>
+            <GooglePlacesAutocomplete
+              styles={inputBoxStyles}
+              placeholder="Where to?"
+              enablePoweredByContainer={false}
+              nearbyPlacesAPI="GooglePlacesSearch"
+              debounce={400}
+              onPress={(data, details = null) => {
+                dispatch(
+                  setDestination({
+                    location: details.geometry.location,
+                    description: data.description,
+                  })
+                );
+                navigation.navigate("RideOptionsCard");
+              }}
+              fetchDetails={true}
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: "en",
+              }}
+            />
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
