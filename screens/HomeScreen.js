@@ -17,12 +17,14 @@ const HomeScreen = () => {
       <View style={tw`p-5`}>
         <Image
           style={{
-            width: 50,
+            width: 100,
             height: 50,
             marginLeft: 11,
             resizeMode: "contain",
           }}
-          source={logoimg}
+          source={{
+            uri: "https://freelogopng.com/images/all_img/1659761100uber-logo-png.png",
+          }}
         />
 
         <GooglePlacesAutocomplete
