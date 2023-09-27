@@ -7,13 +7,17 @@ import {
   FlatList,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "react-native-elements";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectTravelTimeInformation } from "../slices/navSlice";
 
 const RideOptionsCard = () => {
   const navigation = useNavigation();
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
+
   const [selected, setSelected] = useState(null);
 
   const data = [
@@ -38,6 +42,9 @@ const RideOptionsCard = () => {
       image: "https://links.papareact.com/7pf",
     },
   ];
+  useEffect(() => {
+    console.log("consoleeeed", travelTimeInformation);
+  }, [travelTimeInformation]);
   return (
     <SafeAreaView style={tw`bg-white flex-grow`}>
       <View>
@@ -50,7 +57,9 @@ const RideOptionsCard = () => {
         >
           <Icon name="chevron-left" type="fontawesome" size={30} />
         </TouchableOpacity>
-        <Text style={tw`text-center py-5 text-xl`}>Select a Ride</Text>
+        <Text style={tw`text-center py-5 text-xl`}>
+          Select a Ride -{travelTimeInformation?.distance?.text}
+        </Text>
       </View>
       <FlatList
         data={data}
